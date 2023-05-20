@@ -43,5 +43,12 @@
           </tr>
         </tbody>
       </table>
+
+      <script type="module">
+        $(document).ready(function() {
+            alert('jQuery is working!');
+          });
+      </script>
+
 </body>
 </html>
