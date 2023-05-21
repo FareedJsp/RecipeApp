@@ -13,7 +13,7 @@ $('.close-btn').on('click', function(){
     $('.sidebar').removeClass('active');
 })
 
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function () {
     var dropToggle = $('.dropdown-toggle');
     dropToggle.on('click', function (e) {
         e.stopPropagation();
