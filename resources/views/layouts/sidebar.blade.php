@@ -28,11 +28,11 @@
     <hr class="h-color mx-2">
     <ul>
         <li class=""><a href="#"><i class="fa-solid fa-gear"></i>Setting</a></li>
-        <li class=""><a href="#"><i class="fa-solid fa-list-ul"></i></i>test</a></li>
+        <li class=""><a href="/test"><i class="fa-solid fa-list-ul"></i></i>test</a></li>
     </ul>
 </div>
 
 @section('javascript')
     <!-- Sidebar.JS -->
-    <script src="{{ asset('js/sidebar.js') }}"></script>
+    <script type="module" src="{{ asset('js/sidebar.js') }}"></script>
 @endsection

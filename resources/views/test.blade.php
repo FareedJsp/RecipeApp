@@ -44,11 +44,7 @@
         </tbody>
       </table>
 
-      <script type="module">
-        $(document).ready(function() {
-            alert('jQuery is working!');
-          });
-      </script>
+      <script type="module" src="{{ asset('js/general.js') }}"></script>
 
 </body>
 </html>
