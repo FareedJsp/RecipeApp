@@ -56,6 +56,10 @@ hr.h-color{
     border-radius: 8px;
 }
 
+/* .close-btn{
+    color: #fff !important;
+} */
+
 @media(max-width : 767px){
     #side_nav{
         margin-left: -250px;

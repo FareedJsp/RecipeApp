@@ -23,19 +23,17 @@
         @include('layouts.sidebar')
         <!-- /.Sidebar -->
       
-        <div class="content">
+        <main class="content">
       
           <!-- Navbar -->
             @include('layouts.navbar')
           <!-- /.navbar -->
-      
-          <div id="fronttop" class="card-header">
-            @yield('title')
-          </div>
-      
-          @yield('content')
           
-        </div>
+          <div class = 'mt-3 mx-3'>
+            @yield('content')
+          </div>
+          
+        </main>
       
       </div>
       
