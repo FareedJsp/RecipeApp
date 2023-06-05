@@ -8,32 +8,37 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('styles.css') }}">
-
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('styles.css') }}">
 </head>
 <body>
-    <div class="main-container d-flex">
+    <div class="wrapper">
 
         <!-- Sidebar -->
         @include('layouts.sidebar')
         <!-- /.Sidebar -->
       
-        <main class="content">
+        <div class="main">
       
           <!-- Navbar -->
             @include('layouts.navbar')
           <!-- /.navbar -->
+
+          <main class="content px-3 py-2">
+            <div class="container-fluid">
+              <div class="mb-3">
+                @yield('content')
+              </div>
+            </div>
+          </main>
           
-          <div class = 'mt-3 mx-3'>
+          {{-- <div class = 'mt-3 mx-3'>
             @yield('content')
-          </div>
+          </div> --}}
           
-        </main>
+        </div>
       
       </div>
       

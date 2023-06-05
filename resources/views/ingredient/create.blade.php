@@ -20,7 +20,7 @@
                 <i class = 'bi bi-save'></i>
                 Add Ingredient
             </button>
-            <a th:href = "{{ route('ingredient') }}" class = 'btn btn-danger'>
+            <a href = "{{ route('ingredient') }}" class = 'btn btn-danger'>
                 <i class = 'bi bi-x-circle'></i>
                 Cancel
             </a>
