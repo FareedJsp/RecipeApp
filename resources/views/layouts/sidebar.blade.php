@@ -11,30 +11,50 @@
                 <a href="/dashboard" class="sidebar-link"><i class="bi bi-speedometer pe-2"></i>Dashboard</a>
             </li>
             <li class="sidebar-item">
-                <a href="{{ route('ingredient') }}" class="sidebar-link"><i class="bi bi-list-ul pe-2"></i>Ingredient</a>
+                <a href="{{ route('ingredient') }}" class="sidebar-link"><i class="bi bi-tag pe-2"></i>Ingredient</a>
             </li>
             <li class="sidebar-item">
                 <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#pages" aria-expanded="false" aria-controls="pages">
                     <i class="bi bi-file pe-2"></i>
-                    Pages
+                    DropdownItem
                 </a>
                 <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Analytic</a>
+                        <a href="#" class="sidebar-link">Item 1</a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Example</a>
+                        <a href="#" class="sidebar-link">Item 2</a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Later Ok</a>
+                        <a href="#" class="sidebar-link">Item 3</a>
                     </li>
                 </ul>
-                <li class="sidebar-header">
-                    Setting & Other
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link"><i class="bi bi-screwdriver pe-2"></i>Test</a>
-                </li>
+            </li>
+            <li class="sidebar-header">
+                Other Utilities
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link"><i class="bi bi-screwdriver pe-2"></i>Test</a>
+            </li>
+            <li class="sidebar-header">
+                User Setting
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#dropSideUser" aria-expanded="false" aria-controls="pages">
+                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    SuperAdmin
+                </a>
+                <ul id="dropSideUser" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">Settings</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">Profile</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="#">Sign out</a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>

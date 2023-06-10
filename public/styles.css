@@ -100,7 +100,13 @@ a.sidebar-link{
     font-size: 1rem;
 }
 
-.sidebar-link[data-bs-toggle="collapse"]::after{
+hr.sidebar-link{
+    width: 75%;
+    margin: 0 auto;
+}
+
+.sidebar-link[data-bs-toggle="collapse"]::after,
+#dropSideUser .dropdown-toggle[data-bs-toggle="dropdown"]::after{
     border: solid;
     border-width: 0 0.075rem 0.075rem 0;
     content: "";
@@ -113,7 +119,8 @@ a.sidebar-link{
     transition: all .2s ease-out;
 }
 
-.sidebar-link[data-bs-toggle="collapse"].collapsed::after{
+.sidebar-link[data-bs-toggle="collapse"].collapsed::after,
+#dropSideUser .dropdown-toggle[data-bs-toggle="dropdown"].collapsed::after{
     transform: rotate(45deg);
 }
 
