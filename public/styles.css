@@ -11,7 +11,7 @@ body{
     font-family: 'Poppins', sans-serif;
     margin: 0;
     background-color: black; 	/*edited*/ 
-    /* background-image: url(https://source.unsplash.com/random/150x150); */
+    background-image: url(/image/dash.jpg);
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: cover;
@@ -34,6 +34,11 @@ li{
 
 .navbar-toggler-icon {
     background-image: url('data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'><path stroke=\'rgba(255, 255, 255, 1)\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/></svg>') !important;
+}
+
+/* CARD STYLE */
+.card {
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 /* Layout Skeleton */

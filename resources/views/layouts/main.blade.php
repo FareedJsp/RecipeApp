@@ -23,7 +23,7 @@
         <div class="main">
       
           <!-- Navbar -->
-            @include('layouts.navbar')
+          @include('layouts.navbar')
           <!-- /.navbar -->
 
           <main class="content px-3 py-2">
@@ -34,14 +34,9 @@
             </div>
           </main>
           
-          {{-- <div class = 'mt-3 mx-3'>
-            @yield('content')
-          </div> --}}
-          
         </div>
       
-      </div>
-      
+    </div>
       @yield('javascript')
 </body>
 </html>

@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Measurement;
+use App\Models\IngredientType;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Ingredient extends Model
 {
@@ -16,5 +18,10 @@ class Ingredient extends Model
     public function measurements()
     {
         return $this->belongsToMany(Measurement::class);
+    }
+
+    public function ingredientType()
+    {
+        return $this->belongsTo(IngredientType::class);
     }
 }
