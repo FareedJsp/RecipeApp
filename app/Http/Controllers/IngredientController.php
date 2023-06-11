@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ingredient;
 use Illuminate\Http\Request;
+use App\Models\IngredientType;
 
 class IngredientController extends Controller
 {
@@ -13,7 +14,8 @@ class IngredientController extends Controller
 
         $ingredient = Ingredient::when($search, function ($query, $search) {
 
-            return $query->where('name', 'like', "%$search%");
+            return $query->where('name', 'like', "%$search%")
+                ->orWhere('code', 'like', "%$search%");
 
         })->paginate(10);
 
@@ -22,13 +24,15 @@ class IngredientController extends Controller
 
     public function create()
     {
-        return view('ingredient.create');
+        $ingredientType = IngredientType::get();
+        return view('ingredient.create', compact('ingredientType'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'ingredient_type_id' => 'required'
         ]);
 
         $data = $request->all();
@@ -39,14 +43,16 @@ class IngredientController extends Controller
     }
 
     public function edit(Ingredient $ingredient)
-    {
-        return view('ingredient.edit', compact('ingredient'));
+    {   
+        $ingredientType = IngredientType::get();
+        return view('ingredient.edit', compact('ingredient', 'ingredientType'));
     }
 
     public function update(Request $request, Ingredient $ingredient)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'ingredient_type_id' => 'required'
         ]);
     
         $ingredient->update($request->all());

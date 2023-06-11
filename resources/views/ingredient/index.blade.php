@@ -20,18 +20,18 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th class="col-2">Code</th>
                     <th class="col-2">Name</th>
                     <th class="col-7">Unit Measurement</th>
+                    <th class="col-2">Ingredient Type</th>
                     <th class="col-1 text-center">Actions</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
                 @foreach ($ingredient as $ing)
                     <tr>
-                        <td>Will be Updated Later</td>
                         <td>{{ $ing->name }}</td>
                         <td>Later</td>
+                        <td>{{ $ing->ingredientType->name }}</td>
                         <td class="text-center">
                             <a href = "{{ route('ingredient.edit', $ing) }}"><i class = "bi bi-pencil"></i></a>
                             <a onclick = "return confirm('Sure to delete?')" href = "{{ route('ingredient.delete', $ing) }}">

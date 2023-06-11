@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\IngredientTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +19,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+Route::view('/dashboard', 'dashboard')->middleware('auth');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//INGREDIENT TYPES
+
+Route::middleware('auth')->group(function (){
+    Route::get('/ingredient-type',[IngredientTypeController::class,'index'])->name('ingredientType');
+    Route::get('/create-ingredient-type',[IngredientTypeController::class,'create'])->name('ingredientType.create');
+    Route::post('/add-ingredient-type',[IngredientTypeController::class,'store'])->name('ingredientType.store');
+    Route::get('/edit-ingredient-type/{ingredientType}',[IngredientTypeController::class,'edit'])->name('ingredientType.edit');
+    Route::put('/update-ingredient-type/{ingredientType}',[IngredientTypeController::class,'update'])->name('ingredientType.update');
+    Route::get('/delete-ingredient-type/{ingredientType}',[IngredientTypeController::class,'destroy'])->name('ingredientType.delete');
+});
 
 //INGREDIENT
 
@@ -36,6 +46,4 @@ Route::put('/update-ingredient/{ingredient}',[IngredientController::class,'updat
 Route::get('/delete-ingredient/{ingredient}',[IngredientController::class,'destroy'])->name('ingredient.delete');
 
 //TEST ONLY
-Route::get('/test', function () {
-    return view('test');
-});
+Route::view('/test', 'test')->middleware('auth');

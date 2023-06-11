@@ -12,7 +12,8 @@ class Ingredient extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'ingredient_type_id'
     ];
 
     public function measurements()

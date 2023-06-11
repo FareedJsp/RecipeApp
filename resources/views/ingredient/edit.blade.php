@@ -15,6 +15,19 @@
                     <input type = "text" placeholder = "Name" class = "form-control" name="name" value="{{ old('name', $ingredient->name) }}" required/>
                 </div>
             </div>
+            <div class = "row mb-2">
+                <label for = "ingredientType" class = 'col-lg-3 col-form-label'>Ingredient Type *</label>
+                <div class="col-lg-6">
+                    <select class="form-select" name="ingredient_type_id">
+                        <option value="{{$ingredient->ingredientType->id}}">{{$ingredient->ingredientType->name}}</option>
+                        @foreach ($ingredientType as $item)
+                            @if($item->id != $ingredient->ingredientType->id)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
+            </div>
         </div>
         <div class = 'card-footer'>
             <button type = "submit" class = 'btn btn-primary'>
