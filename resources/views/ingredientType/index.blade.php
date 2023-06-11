@@ -11,6 +11,11 @@
     </div>
 
     <div class="card card-body mt-3">
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+        @endif
         <table class="table">
             <thead>
                 <tr>

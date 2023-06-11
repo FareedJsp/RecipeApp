@@ -9,6 +9,11 @@ class Measurement extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'symbol'
+    ];
+
     public function ingredients()
     {
         return $this->belongsToMany(Ingredient::class);

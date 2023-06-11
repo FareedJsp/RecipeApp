@@ -23,7 +23,7 @@
                         <a href="{{ route('ingredientType') }}" class="sidebar-link"><i class="bi bi-folder pe-2 small-icon"></i>Ingredient Type</a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link"><i class="bi bi-rulers pe-2 small-icon"></i>Measurement</a>
+                        <a href="{{ route('measurement') }}" class="sidebar-link"><i class="bi bi-rulers pe-2 small-icon"></i>Measurement</a>
                     </li>
                 </ul>
             </li>

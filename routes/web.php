@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\MeasurementController;
 use App\Http\Controllers\IngredientTypeController;
 
 /*
@@ -44,6 +45,15 @@ Route::post('/add-ingredient',[IngredientController::class,'store'])->name('ingr
 Route::get('/edit-ingredient/{ingredient}',[IngredientController::class,'edit'])->name('ingredient.edit');
 Route::put('/update-ingredient/{ingredient}',[IngredientController::class,'update'])->name('ingredient.update');
 Route::get('/delete-ingredient/{ingredient}',[IngredientController::class,'destroy'])->name('ingredient.delete');
+
+//MEASUREMENT
+
+Route::get('/measurement',[MeasurementController::class,'index'])->name('measurement');
+Route::get('/create-measurement',[MeasurementController::class,'create'])->name('measurement.create');
+Route::post('/add-measurement',[MeasurementController::class,'store'])->name('measurement.store');
+Route::get('/edit-measurement/{measurement}',[MeasurementController::class,'edit'])->name('measurement.edit');
+Route::put('/update-measurement/{measurement}',[MeasurementController::class,'update'])->name('measurement.update');
+Route::get('/delete-measurement/{measurement}',[MeasurementController::class,'destroy'])->name('measurement.delete');
 
 //TEST ONLY
 Route::view('/test', 'test')->middleware('auth');

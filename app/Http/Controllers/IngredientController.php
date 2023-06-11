@@ -14,8 +14,7 @@ class IngredientController extends Controller
 
         $ingredient = Ingredient::when($search, function ($query, $search) {
 
-            return $query->where('name', 'like', "%$search%")
-                ->orWhere('code', 'like', "%$search%");
+            return $query->where('name', 'like', "%$search%");
 
         })->paginate(10);
 

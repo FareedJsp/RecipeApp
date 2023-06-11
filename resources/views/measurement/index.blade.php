@@ -3,14 +3,14 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h5 class = 'card-title'>Ingredient</h5>
+            <h5 class = 'card-title'>Measurement Unit</h5>
         </div>
-        <form action="{{ route('ingredient') }}" method="GET" class="card-body">
+        <form action="{{ route('measurement') }}" method="GET" class="card-body">
             <div class="d-flex gap-2">
                 <input type="text" name="search" value="{{ request('search') }}" class="form-control mr-2" placeholder="Search">
                 <button type="submit" class="btn btn-primary">Search</button>
-                <a href = "{{ route('ingredient.create') }}"
-			    	class = 'btn btn-primary' title = "Add Ingredient"><i class = 'bi bi-plus-circle'></i>
+                <a href = "{{ route('measurement.create') }}"
+			    	class = 'btn btn-primary' title = "Add Measurement"><i class = 'bi bi-plus-circle'></i>
                 </a>
             </div>
         </form>
@@ -26,20 +26,18 @@
             <thead>
                 <tr>
                     <th class="col-2">Name</th>
-                    <th class="col-7">Unit Measurement</th>
-                    <th class="col-2">Ingredient Type</th>
+                    <th class="col-9">Symbol</th>
                     <th class="col-1 text-center">Actions</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                @foreach ($ingredient as $ing)
+                @foreach ($measurement as $mes)
                     <tr>
-                        <td>{{ $ing->name }}</td>
-                        <td>Later</td>
-                        <td>{{ $ing->ingredientType->name }}</td>
+                        <td>{{ $mes->name }}</td>
+                        <td>{{ $mes->symbol }}</td>
                         <td class="text-center">
-                            <a href = "{{ route('ingredient.edit', $ing) }}"><i class = "bi bi-pencil"></i></a>
-                            <a onclick = "return confirm('Sure to delete?')" href = "{{ route('ingredient.delete', $ing) }}">
+                            <a href = "{{ route('measurement.edit', $mes) }}"><i class = "bi bi-pencil"></i></a>
+                            <a onclick = "return confirm('Sure to delete?')" href = "{{ route('measurement.delete', $mes) }}">
 		                    	<i class = "bi bi-trash"></i>
 							</a>
                         </td>
@@ -47,6 +45,6 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $ingredient->appends(request()->except('page'))->links() }}
+        {{ $measurement->appends(request()->except('page'))->links() }}
     </div>
 @endsection
