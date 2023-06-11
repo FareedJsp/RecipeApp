@@ -25,6 +25,32 @@
                     </select>
                 </div>
             </div>
+            <div class="row mb-2">
+                <label for = "measurement" class = 'col-lg-3 col-form-label'>Measurement *</label>
+                @foreach ($measurement as $mes)
+                <div class="form-group">
+                    <input class="form-check-input" type="checkbox" value="{{ $mes->id }}" name="measurement[]">
+                    <label class="form-check-label">
+                        {{ $mes->name }}
+                    </label>
+                    <div class="clearfix"></div>
+                </div>
+                @endforeach
+            </div>
+            
+            {{-- <div class="row mb-2">
+                <label for = "measurement_id" class = 'col-lg-3 col-form-label'>Measurement *</label>
+                @foreach ($measurement as $mes)
+                <div class="form-group">
+                    <label>
+                    <input type="checkbox" name="measurement_id" value="{{ $mes->id }}">
+                    {{ $mes->name }}
+                    </label>
+                    <div class="clearfix"></div>
+                </div>
+                @endforeach
+            </div> --}}
+            
         </div>
         <div class = 'card-footer'>
             <button type = "submit" class = 'btn btn-primary'>

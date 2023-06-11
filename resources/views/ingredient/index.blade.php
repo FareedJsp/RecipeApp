@@ -35,7 +35,11 @@
                 @foreach ($ingredient as $ing)
                     <tr>
                         <td>{{ $ing->name }}</td>
-                        <td>Later</td>
+                        <td>
+                            @foreach ($ing->measurements as $mes)
+                                {{ $mes->name . ' (' .$mes->symbol. ')' }}{{ !$loop->last ? ',' : '' }}
+                            @endforeach
+                        </td>
                         <td>{{ $ing->ingredientType->name }}</td>
                         <td class="text-center">
                             <a href = "{{ route('ingredient.edit', $ing) }}"><i class = "bi bi-pencil"></i></a>

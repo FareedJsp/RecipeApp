@@ -18,7 +18,7 @@ class Ingredient extends Model
 
     public function measurements()
     {
-        return $this->belongsToMany(Measurement::class);
+        return $this->belongsToMany(Measurement::class)->withTimestamps();
     }
 
     public function ingredientType()

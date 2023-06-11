@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ingredient;
+use App\Models\Measurement;
 use Illuminate\Http\Request;
 use App\Models\IngredientType;
 
@@ -24,7 +25,8 @@ class IngredientController extends Controller
     public function create()
     {
         $ingredientType = IngredientType::get();
-        return view('ingredient.create', compact('ingredientType'));
+        $measurement = Measurement::get();
+        return view('ingredient.create', compact('ingredientType', 'measurement'));
     }
 
     public function store(Request $request)
@@ -36,7 +38,11 @@ class IngredientController extends Controller
 
         $data = $request->all();
 
-        Ingredient::create($data);
+        $ingredient = Ingredient::create($data);
+
+        if ($request->has('measurement')) {
+            $ingredient->measurements()->sync($request->measurement);
+        }
 
         return redirect()->route('ingredient')->with('success', 'Ingredient created successfully.');
     }
@@ -44,7 +50,8 @@ class IngredientController extends Controller
     public function edit(Ingredient $ingredient)
     {   
         $ingredientType = IngredientType::get();
-        return view('ingredient.edit', compact('ingredient', 'ingredientType'));
+        $measurement = Measurement::get();
+        return view('ingredient.edit', compact('ingredient', 'ingredientType', 'measurement'));
     }
 
     public function update(Request $request, Ingredient $ingredient)
@@ -55,6 +62,10 @@ class IngredientController extends Controller
         ]);
     
         $ingredient->update($request->all());
+
+        if ($request->has('measurement')) {
+            $ingredient->measurements()->sync($request->measurement);
+        }
 
         return redirect()->route('ingredient')->with('success', 'Ingredient updated successfully.');
     }
