@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\MeasurementController;
 use App\Http\Controllers\IngredientTypeController;
@@ -33,8 +34,8 @@ Route::middleware('auth')->group(function (){
     Route::get('/ingredient-type',[IngredientTypeController::class,'index'])->name('ingredientType');
     Route::get('/create-ingredient-type',[IngredientTypeController::class,'create'])->name('ingredientType.create');
     Route::post('/add-ingredient-type',[IngredientTypeController::class,'store'])->name('ingredientType.store');
-    Route::get('/edit-ingredient-type/{ingredientType}',[IngredientTypeController::class,'edit'])->name('ingredientType.edit');
-    Route::put('/update-ingredient-type/{ingredientType}',[IngredientTypeController::class,'update'])->name('ingredientType.update');
+    Route::get('/edit-ingredient-type/{ingredientType}',[IngredientTypeController::class,'edit'])->name('ingredientType.edit')->middleware('can:edit-ingredient-types');
+    Route::put('/update-ingredient-type/{ingredientType}',[IngredientTypeController::class,'update'])->name('ingredientType.update')->middleware('can:edit-ingredient-types');
     Route::get('/delete-ingredient-type/{ingredientType}',[IngredientTypeController::class,'destroy'])->name('ingredientType.delete');
 
     //INGREDIENT
@@ -55,6 +56,14 @@ Route::middleware('auth')->group(function (){
     Route::put('/update-measurement/{measurement}',[MeasurementController::class,'update'])->name('measurement.update');
     Route::get('/delete-measurement/{measurement}',[MeasurementController::class,'destroy'])->name('measurement.delete');
 });
+
+//USERCONTROL
+Route::get('/user',[UserController::class,'index'])->name('user');
+Route::get('/create-user',[UserController::class,'create'])->name('user.create');
+Route::post('/add-user',[UserController::class,'store'])->name('user.store');
+Route::get('/edit-user/{user}',[UserController::class,'edit'])->name('user.edit');
+Route::put('/update-user/{user}',[UserController::class,'update'])->name('user.update');
+Route::get('/delete-user/{user}',[UserController::class,'destroy'])->name('user.delete');
 
 //TEST ONLY
 Route::view('/test', 'test')->middleware('auth');

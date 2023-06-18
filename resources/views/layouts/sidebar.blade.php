@@ -12,7 +12,7 @@
             </li>
             <li class="sidebar-item">
                 <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#pages" aria-expanded="false" aria-controls="pages">
-                    <i class="bi bi-tag pe-2"></i>
+                    <i class="bi bi-tags-fill pe-2"></i>
                     Ingredient
                 </a>
                 <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
@@ -33,6 +33,14 @@
             <li class="sidebar-item">
                 <a href="#" class="sidebar-link"><i class="bi bi-screwdriver pe-2"></i>Test</a>
             </li>
+            @can('manage_users')
+            <li class="sidebar-header">
+                Manage User
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ route('user') }}" class="sidebar-link"><i class="bi bi-people-fill pe-2"></i>User List</a>
+            </li>
+            @endcan
             <li class="sidebar-header">
                 User Setting
             </li>
@@ -43,10 +51,10 @@
                 </a>
                 <ul id="dropSideUser" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link"><i class="bi bi-gear pe-2 small-icon"></i>Settings</a>
+                        <a href="#" class="sidebar-link"><i class="bi bi-gear-fill pe-2 small-icon"></i>Settings</a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link"><i class="bi bi-person pe-2 small-icon"></i>Profile</a>
+                        <a href="#" class="sidebar-link"><i class="bi bi-person-fill pe-2 small-icon"></i>Profile</a>
                     </li>
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="{{ route('logout') }}"
