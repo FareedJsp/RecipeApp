@@ -39,7 +39,7 @@
             <li class="sidebar-item">
                 <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#dropSideUser" aria-expanded="false" aria-controls="dropSideUser">
                     <img src="/image/OIG.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
-                    SuperAdmin
+                    {{ Auth::user()->name }}
                 </a>
                 <ul id="dropSideUser" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
@@ -49,7 +49,13 @@
                         <a href="#" class="sidebar-link"><i class="bi bi-person pe-2 small-icon"></i>Profile</a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="#"><i class="bi bi-arrow-right pe-2 small-icon"></i>Sign out</a>
+                        <a class="sidebar-link" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                        <i class="bi bi-arrow-right pe-2 small-icon"></i>{{ __('Logout') }}</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </li>

@@ -1,0 +1,18 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: black; 	/*edited*/ 
+    background-image: url(/public/image/dash.jpg);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+}
+
+#app{
+    min-height: 100vh;
+}
+
+/* CARD STYLE */
+.card {
+    background-color: rgba(255, 255, 255, 0.7);
+}
