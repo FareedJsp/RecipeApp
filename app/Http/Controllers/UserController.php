@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
+    public function __construct() {
+
         $this->middleware(['auth']);
     }
 
-    public function index(Request $request){
+    public function index(Request $request) {
 
         $this->authorize('viewAny', User::class);
 
@@ -33,14 +33,14 @@ class UserController extends Controller
     return view('user.index', compact('users', 'roles'));
     }
 
-    public function create()
-    {
+    public function create(){
+
         $roles = Role::whereNotIn('name', ['SuperAdmin'])->get();
         return view('user.create', compact('roles'));
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
+
         $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -57,14 +57,18 @@ class UserController extends Controller
         return redirect()->route('user')->with('success', 'User Created successfully.');
     }
 
-    public function show(Request $request, User $user)
-    {   
-        return view('user.show');
+    public function show(User $user) {   
+
+        return view('user.show', compact('user'));
     }
 
-    public function edit(User $user)
-    {   
-        if ($user->hasRole(['SuperAdmin', 'Admin'])) {
+    public function edit(User $user) {  
+        
+        $this->authorize('edit', $user);
+
+        if ($user->hasRole('SuperAdmin')){
+            $roles = Role::get();
+        }else if($user->hasRole(['SuperAdmin', 'Admin'])) {
             $roles = Role::whereNotIn('name', ['SuperAdmin'])->get();
         }else{
             $roles = Role::whereNotIn('name', ['SuperAdmin', 'Admin', 'Marketing'])->get();
@@ -75,8 +79,10 @@ class UserController extends Controller
         return view('user.edit', compact('user', 'roles', 'roleName'));
     }
 
-    public function update(Request $request, User $user)
-    {
+    public function update(Request $request, User $user) {
+
+        $this->authorize('update', $user);
+
         $request->validate([
             'name' => 'required',
             'email' => 'required'
@@ -88,7 +94,7 @@ class UserController extends Controller
 
         $user->syncRoles($request->role);
 
-        return redirect()->route('user')->with('success', 'User Updated successfully.');
+        return redirect()->route('user.show', $user)->with('success', 'User Updated successfully.');
     }
 
     // public function updateRole(Request $request, User $user)
@@ -96,8 +102,8 @@ class UserController extends Controller
     //     $user->syncRoles([$request->role]);
     // }
 
-    public function destroy(User $user)
-    {
+    public function destroy(User $user) {
+
         $user->delete();
 
         return redirect()->route('ingredient')->with('success', 'User deleted successfully.');

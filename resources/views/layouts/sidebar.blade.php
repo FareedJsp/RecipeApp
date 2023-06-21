@@ -54,7 +54,7 @@
                         <a href="#" class="sidebar-link"><i class="bi bi-gear-fill pe-2 small-icon"></i>Settings</a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link"><i class="bi bi-person-fill pe-2 small-icon"></i>Profile</a>
+                        <a href="{{ route('user.show', Auth::user()) }}" class="sidebar-link"><i class="bi bi-person-fill pe-2 small-icon"></i>Profile</a>
                     </li>
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="{{ route('logout') }}"
@@ -71,6 +71,6 @@
     </div>
 </aside>
 
-@section('javascript')
+@push('javascript')
     <script type="module" src="{{ asset('js/sidebar.js') }}"></script>
-@endsection
+@endpush

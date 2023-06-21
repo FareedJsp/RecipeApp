@@ -2,8 +2,9 @@
 @section('content')
 
 <div>
-    <form method="post" action="{{ route('user.store') }}" enctype="multipart/form-data" class = 'card w-75 mx-auto'>
+    <form method="post" action="{{ route('user.update', $user) }}" enctype="multipart/form-data" class = 'card w-75 mx-auto'>
         @csrf
+        @method('PUT')
         <div class = 'card-header'>
             <h5>Create New User</h5>
         </div>
@@ -42,17 +43,70 @@
                 </div>
             </div>
         </div>
-        <div class = 'card-footer'>
+        <div class = 'card-footer d-flex gap-1'>
             <button type = "submit" class = 'btn btn-primary'>
-                <i class = 'bi bi-save'></i>
+                <i class = 'bi bi-save pe-2'></i>
                 Update Data
             </button>
-            <a href = "{{ route('user') }}" class = 'btn btn-danger'>
-                <i class = 'bi bi-x-circle'></i>
+            <a href = "{{ route('user.show', $user) }}" class = 'btn btn-danger'>
+                <i class = 'bi bi-x-circle pe-2'></i>
                 Cancel
             </a>
+            <button type="button" class='btn btn-warning ms-auto' onclick="showChangePasswordForm()">
+                <i class="bi bi-key-fill pe-2"></i>
+                Change Password
+            </button>
         </div>   
     </form>
-</div>
+    
+    <form method="POST" action="{{ route('change.password') }}">
+        @csrf 
 
+         @foreach ($errors->all() as $error)
+            <p class="text-danger">{{ $error }}</p>
+         @endforeach 
+
+        <div id="changePasswordCard" class="card mt-5 w-75 mx-auto" style="display: none;">
+            <div class="card-body">
+                <div class="form-group row mb-2">
+                    <label for="password" class="col-md-3 col-form-label text-md-right">Current Password *</label>
+        
+                    <div class="col-md-6">
+                        <input id="password" type="password" class="form-control" name="current_password" autocomplete="current-password">
+                    </div>
+                </div>
+        
+                <div class="form-group row mb-1">
+                    <label for="password" class="col-md-3 col-form-label text-md-right">New Password *</label>
+        
+                    <div class="col-md-6">
+                        <input id="new_password" type="password" class="form-control" name="new_password" autocomplete="current-password">
+                    </div>
+                </div>
+        
+                <div class="form-group row">
+                    <label for="password" class="col-md-3 col-form-label text-md-right">New Confirm Password *</label>
+        
+                    <div class="col-md-6">
+                        <input id="new_confirm_password" type="password" class="form-control" name="new_confirm_password" autocomplete="current-password">
+                    </div>
+                </div>
+            </div>
+            <div class = 'card-footer d-flex'>
+                <button type = "submit" class = 'btn btn-primary'>
+                    <i class = 'bi bi-save pe-2'></i>
+                    Update Password
+                </button>
+                <button type="button" class="btn btn-secondary ms-auto" onclick="hideChangePasswordForm()">
+                    <i class="bi bi-door-closed-fill pe-2"></i>
+                    Close
+                </button>
+            </div>   
+        </div>
+    </form>
+</div>
 @endsection
+
+@push('javascript')
+    <script src="{{ asset('js/changepassword.js') }}"></script>
+@endpush

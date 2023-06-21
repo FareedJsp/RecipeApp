@@ -2,12 +2,12 @@
 
 namespace App\Policies;
 
+use App\Models\Ingredient;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class UserPolicy
+class IngredientPolicy
 {
-    
     public function before(User $user, $ability)
     {
         if ($user->hasRole('SuperAdmin')) {
@@ -15,20 +15,21 @@ class UserPolicy
         }
         return null;
     }
+    
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasRole('Admin');
+        //
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, User $model): bool
+    public function view(User $user, Ingredient $ingredient): bool
     {
-        return $user->hasRole('Admin');
+        //
     }
 
     /**
@@ -36,44 +37,38 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasRole('Admin');
+        //
     }
-
-    public function edit(User $user, User $model): bool
-    {
-        return $user->id === $model->id || $user->hasRole('Admin');
-    }
-
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, User $model): bool
+    public function update(User $user, Ingredient $ingredient): bool
     {
-        return $user->id === $model->id || $user->hasRole('Admin');
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, User $model): bool
+    public function delete(User $user, Ingredient $ingredient): bool
     {
-        return $user->hasRole('Admin');
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, User $model): bool
+    public function restore(User $user, Ingredient $ingredient): bool
     {
-        return $user->hasRole('Admin');
+        //
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, User $model): bool
+    public function forceDelete(User $user, Ingredient $ingredient): bool
     {
-        return $user->hasRole('Admin');
+        //
     }
 }
