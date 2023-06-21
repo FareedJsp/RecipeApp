@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Ingredient;
 use App\Models\Measurement;
 use Illuminate\Http\Request;
 use App\Models\IngredientType;
+use Illuminate\Support\Facades\Auth;
 
 class IngredientController extends Controller
 {
@@ -35,8 +37,9 @@ class IngredientController extends Controller
             'name' => 'required',
             'ingredient_type_id' => 'required'
         ]);
-
+        
         $data = $request->all();
+        $data['user_id'] = Auth::id();
 
         $ingredient = Ingredient::create($data);
 
@@ -49,6 +52,8 @@ class IngredientController extends Controller
 
     public function edit(Ingredient $ingredient)
     {   
+        $this->authorize('edit', $ingredient);
+
         $ingredientType = IngredientType::get();
         $measurement = Measurement::get();
         return view('ingredient.edit', compact('ingredient', 'ingredientType', 'measurement'));
@@ -56,11 +61,13 @@ class IngredientController extends Controller
 
     public function update(Request $request, Ingredient $ingredient)
     {
+        $this->authorize('update', $ingredient);
+
         $request->validate([
             'name' => 'required',
             'ingredient_type_id' => 'required'
         ]);
-    
+        
         $ingredient->update($request->all());
 
         if ($request->has('measurement')) {
@@ -72,6 +79,8 @@ class IngredientController extends Controller
 
     public function destroy(Ingredient $ingredient)
     {
+        $this->authorize('delete', $ingredient);
+
         $ingredient->delete();
 
         return redirect()->route('ingredient')->with('success', 'Ingredient deleted successfully.');

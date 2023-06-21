@@ -17,7 +17,7 @@ class UserController extends Controller
 
     public function index(Request $request) {
 
-        $this->authorize('viewAny', User::class);
+        $this->authorize('viewAny');
 
         $search = $request->input('search');
         $role = $request->input('role');
@@ -35,11 +35,15 @@ class UserController extends Controller
 
     public function create(){
 
+        $this->authorize('create');
+
         $roles = Role::whereNotIn('name', ['SuperAdmin'])->get();
         return view('user.create', compact('roles'));
     }
 
     public function store(Request $request) {
+
+        $this->authorize('edit');
 
         $request->validate([
             'name' => 'required',
@@ -57,7 +61,9 @@ class UserController extends Controller
         return redirect()->route('user')->with('success', 'User Created successfully.');
     }
 
-    public function show(User $user) {   
+    public function show(User $user) { 
+        
+        $this->authorize('view', $user);
 
         return view('user.show', compact('user'));
     }
@@ -97,12 +103,9 @@ class UserController extends Controller
         return redirect()->route('user.show', $user)->with('success', 'User Updated successfully.');
     }
 
-    // public function updateRole(Request $request, User $user)
-    // {
-    //     $user->syncRoles([$request->role]);
-    // }
-
     public function destroy(User $user) {
+
+        $this->authorize('delete', $user);
 
         $user->delete();
 

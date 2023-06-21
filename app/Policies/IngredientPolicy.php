@@ -40,12 +40,18 @@ class IngredientPolicy
         //
     }
 
+    public function edit(User $user, Ingredient $ingredient): bool
+    {
+        return $user->id === $ingredient->user_id || $user->hasRole('Admin');
+    }
+
+
     /**
      * Determine whether the user can update the model.
      */
     public function update(User $user, Ingredient $ingredient): bool
     {
-        //
+        return $user->id === $ingredient->user_id || $user->hasRole('Admin');
     }
 
     /**
@@ -53,7 +59,7 @@ class IngredientPolicy
      */
     public function delete(User $user, Ingredient $ingredient): bool
     {
-        //
+        return $user->id === $ingredient->user_id || $user->hasRole('Admin');
     }
 
     /**
