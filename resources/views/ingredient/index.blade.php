@@ -5,8 +5,16 @@
         <div class="card-header">
             <h5 class = 'card-title'>Ingredient</h5>
         </div>
-        <form action="{{ route('ingredient') }}" method="GET" class="card-body">
+        <form id="filter-form" action="{{ route('ingredient') }}" method="GET" class="card-body">
             <div class="d-flex gap-2">
+                <div class="col-2">
+                    <select name="ingredientType" class="form-control mr-2" onchange="document.getElementById('filter-form').submit()">
+                        <option value="">All Category</option>
+                        @foreach ($ingredientTypes as $ingredientType)
+                          <option value="{{ $ingredientType->id }}" {{ request('ingredientType') == $ingredientType->id ? 'selected' : '' }}>{{ $ingredientType->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <input type="text" name="search" value="{{ request('search') }}" class="form-control mr-2" placeholder="Search">
                 <button type="submit" class="btn btn-primary">Search</button>
                 <a href = "{{ route('ingredient.create') }}"
@@ -32,7 +40,7 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                @foreach ($ingredient as $ing)
+                @foreach ($ingredients as $ing)
                     <tr>
                         <td>{{ $ing->name }}</td>
                         <td>
@@ -51,6 +59,6 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $ingredient->appends(request()->except('page'))->links() }}
+        {{ $ingredients->appends(request()->except('page'))->links() }}
     </div>
 @endsection

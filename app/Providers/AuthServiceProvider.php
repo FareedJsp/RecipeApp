@@ -33,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasRole('SuperAdmin') ? true : null;
         });
 
-        Gate::define('manage_users', function(User $user) {
+        Gate::define('isAdmin', function(User $user) {
             return $user->hasRole('Admin')
                 ? Response::allow()
                 : Response::deny('You must be an Administrator.');

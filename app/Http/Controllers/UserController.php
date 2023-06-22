@@ -17,7 +17,7 @@ class UserController extends Controller
 
     public function index(Request $request) {
 
-        $this->authorize('viewAny');
+        $this->authorize('viewAny', User::class);
 
         $search = $request->input('search');
         $role = $request->input('role');
@@ -35,7 +35,7 @@ class UserController extends Controller
 
     public function create(){
 
-        $this->authorize('create');
+        $this->authorize('create', User::class);
 
         $roles = Role::whereNotIn('name', ['SuperAdmin'])->get();
         return view('user.create', compact('roles'));
@@ -43,7 +43,7 @@ class UserController extends Controller
 
     public function store(Request $request) {
 
-        $this->authorize('edit');
+        $this->authorize('edit', User::class);
 
         $request->validate([
             'name' => 'required',
@@ -70,11 +70,17 @@ class UserController extends Controller
 
     public function edit(User $user) {  
         
-        $this->authorize('edit', $user);
+        if ($user->hasRole('SuperAdmin')) {
+            $this->authorize('editSuperAdmin');
+        } else {
+            $this->authorize('edit', $user);
+        }
 
-        if ($user->hasRole('SuperAdmin')){
+        $currentUser = Auth()->user();
+
+        if ($currentUser->hasRole('SuperAdmin')){
             $roles = Role::get();
-        }else if($user->hasRole(['SuperAdmin', 'Admin'])) {
+        }else if($currentUser->hasRole('Admin')) {
             $roles = Role::whereNotIn('name', ['SuperAdmin'])->get();
         }else{
             $roles = Role::whereNotIn('name', ['SuperAdmin', 'Admin', 'Marketing'])->get();
@@ -105,7 +111,11 @@ class UserController extends Controller
 
     public function destroy(User $user) {
 
-        $this->authorize('delete', $user);
+        if ($user->hasRole('SuperAdmin')) {
+            $this->authorize('editSuperAdmin');
+        } else {
+            $this->authorize('delete', $user);
+        }
 
         $user->delete();
 

@@ -14,6 +14,7 @@ class RoleAndPermissionSeeder extends Seeder
      */
     public function run(): void
     {
+        Permission::create(['name' => 'editSuperAdmin']);
         Permission::create(['name' => 'edit-ingredient-types']);
         
         $superAdmin = Role::create(['name' => 'SuperAdmin']);
@@ -23,7 +24,8 @@ class RoleAndPermissionSeeder extends Seeder
         $userRole = Role::create(['name' => 'User']);
 
         $superAdmin->givePermissionTo([
-            'edit-ingredient-type'
+            'edit-ingredient-type',
+            'editSuperAdmin'
         ]);
 
         $adminRole->givePermissionTo([

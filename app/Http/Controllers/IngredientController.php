@@ -14,14 +14,22 @@ class IngredientController extends Controller
     public function index(Request $request){
 
         $search = $request->input('search');
+        $ingredientType = $request->input('ingredientType');
 
-        $ingredient = Ingredient::when($search, function ($query, $search) {
+        $ingredients = Ingredient::when($search, function ($query, $search) {
 
-            return $query->where('name', 'like', "%$search%");
+            return $query->where('name', 'like', "%$search%")
+            ->orWhereHas('measurements', function ($query) use ($search) {
+                $query->where('name', 'like', "%$search%");
+                });
+            })
+            ->when($ingredientType, function ($query, $ingredientType) {
+                return $query->where('ingredient_type_id', $ingredientType);
+            })->paginate(10);
 
-        })->paginate(10);
+        $ingredientTypes = IngredientType::get();
 
-        return view('ingredient.index', compact('ingredient'));
+        return view('ingredient.index', compact('ingredients', 'ingredientTypes'));
     }
 
     public function create()

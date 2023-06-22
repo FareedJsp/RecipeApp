@@ -33,7 +33,7 @@
             <li class="sidebar-item">
                 <a href="#" class="sidebar-link"><i class="bi bi-screwdriver pe-2"></i>Test</a>
             </li>
-            @can('manage_users')
+            @can('isAdmin')
             <li class="sidebar-header">
                 Manage User
             </li>
@@ -50,9 +50,6 @@
                     {{ Auth::user()->name }}
                 </a>
                 <ul id="dropSideUser" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link"><i class="bi bi-gear-fill pe-2 small-icon"></i>Settings</a>
-                    </li>
                     <li class="sidebar-item">
                         <a href="{{ route('user.show', Auth::user()) }}" class="sidebar-link"><i class="bi bi-person-fill pe-2 small-icon"></i>Profile</a>
                     </li>
