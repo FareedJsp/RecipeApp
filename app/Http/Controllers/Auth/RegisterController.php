@@ -72,7 +72,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        $user->assignRole($data['role']);
+        if (User::count() == 1) {
+            $user->assignRole('superAdmin');
+        } else {
+            $user->assignRole($data['role']);
+        }
 
         return $user;
     }

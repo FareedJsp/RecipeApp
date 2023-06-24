@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\MeasurementController;
 use App\Http\Controllers\ChangePasswordController;
@@ -29,7 +30,7 @@ Route::middleware('auth')->group(function (){
         return view('dashboard');
     });
 
-    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::get('/dashboard',[GeneralController::class,'viewDashboard'])->name('dashboard');
 
     //INGREDIENT TYPES
     Route::get('/ingredient-type',[IngredientTypeController::class,'index'])->name('ingredientType');

@@ -1,6 +1,7 @@
 @import url('https://fonts.bunny.net/css?family=Poppins');
+@import "@fortawesome/fontawesome-free/css/all.css";
 
-body{
+body #app{
     font-family: 'Poppins', sans-serif;
     margin: 0;
     background-color: black; 	/*edited*/ 
@@ -15,6 +16,6 @@ body{
 }
 
 /* CARD STYLE */
-.card {
+#app .card {
     background-color: rgba(255, 255, 255, 0.7);
 }

@@ -57,7 +57,7 @@
                         <a class="sidebar-link" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                        <i class="bi bi-arrow-right pe-2 small-icon"></i>{{ __('Logout') }}</a>
+                        <i class="bi bi-box-arrow-right pe-2 small-icon"></i>{{ __('Logout') }}</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
