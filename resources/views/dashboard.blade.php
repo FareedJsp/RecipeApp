@@ -2,9 +2,9 @@
 @section('content')
 
 <div id="dashboard">
-    <div class="row">
+    <div id="cardRowOne" class="row">
         <div class="col-xl-3 col-sm-6 col-12">
-            <div id="userCard" class="card card-body">
+            <div class="card card-body">
                 <div class="media">
                     <div class="media-body">
                         <h3 class="success">{{$userCount}}</h3>
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-sm-6 col-12">
-            <div id="ingredientCard" class="card card-body">
+            <div class="card card-body">
                 <div class="media">
                     <div class="media-body">
                         <h3 class="success">{{$ingredientCount}}</h3>
@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-sm-6 col-12">
-            <div id="recipeCard" class="card card-body">
+            <div class="card card-body">
                 <div class="media">
                     <div class="media-body">
                         <h3 class="success">100</h3>
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-sm-6 col-12">
-            <div id="visitCard" class="card card-body">
+            <div class="card card-body">
                 <div class="media">
                     <div class="media-body">
                         <h3 class="success">133</h3>

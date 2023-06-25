@@ -1,6 +1,15 @@
 @import url('https://fonts.bunny.net/css?family=Poppins');
 @import url('https://fonts.bunny.net/css?family=Nunito');
 
+:root{
+    --side-width: 264px;
+    --first-color: #4723D9;
+    --first-color-light: #AFA5D9;
+    --white-color: #F7F6FB;
+    --white-color-variant: #e9ecef;
+    --body-font: 'Poppins', sans-serif;
+    --normal-font-size: 1rem;--z-fixed: 100
+}
 
 *,
 ::after
@@ -9,7 +18,7 @@
 }
 
 body{
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--body-font);
     margin: 0;
     background-color: black; 	/*edited*/ 
     background-image: url(/image/food.jpg);
@@ -33,9 +42,9 @@ li{
     list-style: none;
 }
 
-.navbar-toggler-icon {
+/* .navbar-toggler-icon {
     background-image: url('data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'><path stroke=\'rgba(255, 255, 255, 1)\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/></svg>') !important;
-}
+} */
 
 .small-icon {
     font-size: 0.75rem;
@@ -54,14 +63,25 @@ li{
     width: 100%;
 }
 
+header nav i{
+    color: var(--white-color-variant);
+    cursor: pointer;
+    font-size: 20px;
+}
+
 
 #sidebar{
-    max-width: 264px;
-    min-width: 264px;
+    max-width: var(--side-width);
+    min-width: var(--side-width);
     transition: all 0.35s ease-in-out;
     background-color: rgba(14, 27, 20, 0.3);
     box-shadow: 0 0 35px 0 rgba(49, 57, 66, 0.5);
     z-index: 1111;
+}
+
+.sidebar-logo-icon{
+    font-size: 1.25rem;
+    color: var(--white-color)
 }
 
 /* Sidebar Collapse */
@@ -84,8 +104,7 @@ li{
 }
 
 .sidebar-logo a{
-    /* color: #e9ecef; */
-    color: #e9ecef;
+    color: var(--white-color-variant);
     font-size: 1.25rem;
     font-weight: 600;
 }
@@ -95,7 +114,7 @@ li{
 }
 
 .sidebar-header{
-    color: #e9ecef;
+    color: var(--white-color-variant);
     font-size: .75rem;
     padding: 1.5rem 1.5rem .375rem;
 }
@@ -106,9 +125,10 @@ li{
 
 a.sidebar-link{
     padding: .625rem 1.625rem;
-    color: #e9ecef;
+    color: var(--white-color-variant);
     position: relative;
     display: block;
+    font-weight: 500;
     font-size: 1rem;
 }
 
@@ -142,76 +162,40 @@ hr.sidebar-link{
     width: 100vw;
 }
 
+.active::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 2px;
+    height: 32px;
+    background-color: var(--white-color)
+}
+
 /* DASHBOARD */
 
-#dashboard .card .media {
+#dashboard #cardRowOne .card .media {
     display: flex;
     justify-content: space-between;
 }
 
-#dashboard #userCard .media i{
+#dashboard #cardRowOne .card .media i{
     font-size: 48px;
     color: #13c94f;
 }
 
-#dashboard #userCard .media .media-body h3{
+#dashboard #cardRowOne .card .media .media-body h3{
     font-weight: bold;
     color: rgb(12, 126, 126);
 }
 
-#dashboard #userCard .media .media-body span{
-    font-weight: bold;
-    color: #ee260b;
-}
-
-#dashboard #visitCard .media i{
-    font-size: 48px;
-    color: #13c94f;
-}
-
-#dashboard #visitCard .media .media-body h3{
-    font-weight: bold;
-    color: rgb(12, 126, 126);
-}
-
-#dashboard #visitCard .media .media-body span{
-    font-weight: bold;
-    color: #ee260b;
-}
-
-#dashboard #ingredientCard .media i{
-    font-size: 48px;
-    color: #13c94f;
-}
-
-#dashboard #ingredientCard .media .media-body h3{
-    font-weight: bold;
-    color: rgb(12, 126, 126);
-}
-
-#dashboard #ingredientCard .media .media-body span{
-    font-weight: bold;
-    color: #ee260b;
-}
-
-#dashboard #recipeCard .media i{
-    font-size: 48px;
-    color: #13c94f;
-}
-
-#dashboard #recipeCard .media .media-body h3{
-    font-weight: bold;
-    color: rgb(12, 126, 126);
-}
-
-#dashboard #recipeCard .media .media-body span{
+#dashboard #cardRowOne .card .media .media-body span{
     font-weight: bold;
     color: #ee260b;
 }
 
 
 /* RESPONSIVE */
-@media (min-width: 767.98px) {
+@media screen and (min-width: 767.98px) {
     .content{
         width: auto;
     }

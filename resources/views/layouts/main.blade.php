@@ -23,7 +23,7 @@
         <div class="main">
       
           <!-- Navbar -->
-          @include('layouts.navbar')
+          @include('layouts.header')
           <!-- /.navbar -->
 
           <main class="content px-3 py-2">

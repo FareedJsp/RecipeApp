@@ -1,6 +1,7 @@
 <aside id="sidebar">
     <div class="h-100">
         <div class="sidebar-logo">
+            <i class='bi bi-stack sidebar-logo-icon pe-2'></i>
             <a href="#">Recipe App</a>
         </div>
         <ul class="sidebar-nav">
